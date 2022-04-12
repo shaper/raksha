@@ -40,6 +40,7 @@ cc_proto_library(
     protos = [
         ":sql_ir_proto",
     ],
+    visibility = ["//:__pkg__"],
 )
 
 cc_library(
@@ -74,6 +75,17 @@ cc_library(
         ":decoder_context",
         ":sql_ir_cc_proto",
         "//src/ir:value",
+    ],
+)
+
+cc_library(
+    name = "bridge",
+    srcs = ["bridge.cc"],
+    hdrs = ["bridge.h"],
+    visibility = ["//:__pkg__"],
+    deps = [
+        ":sql_ir_cc_proto",
+        "//src/common/proto:protobuf",
     ],
 )
 
